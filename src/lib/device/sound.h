@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-//see https://en.wikipedia.org/wiki/Piano_key_frequencies
+// see https://en.wikipedia.org/wiki/Piano_key_frequencies
 typedef enum {
     note_C0 = 16,
     note_Db0 = 17,
@@ -56,7 +56,8 @@ typedef enum {
     note_Bb3 = 233,
     note_B3 = 247,
 
-    note_C4 = 262, note_middleC = note_C4,
+    note_C4 = 262,
+    note_middleC = note_C4,
     note_Db4 = 277,
     note_D4 = 294,
     note_Eb4 = 311,

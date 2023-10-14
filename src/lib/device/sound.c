@@ -18,7 +18,7 @@ void soundOn(void) {
 }
 
 void soundOff(void) {
-    // sets the bottom 2 bits to 0. 
+    // sets the bottom 2 bits to 0.
     uint8_t tmp = inb(SOUND_PORT) & SOUND_MASK;
 
     // This brings the speaker in and disables timer 2's influence

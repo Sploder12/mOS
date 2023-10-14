@@ -18,7 +18,8 @@ void init_pit() {
     InterruptState iprev = disableInterrupts();
     irqSetHandler(0, timer_handler);
     init_timer(
-        100, 0); // 100 hz is just a good general frequency according to the wiki
+        100,
+        0); // 100 hz is just a good general frequency according to the wiki
     setInterrupts(iprev);
 }
 
