@@ -17,8 +17,13 @@ void init_pit();
  *	Setting the freqency for the timer.
  *  Parameter: hz
  *		Integer value that gets  divided by the amount of Oscillations
+ *  Parameter: init_channel
+ *      Integer value between 0 and 2 (inclusive)
+ *          0 generates IRQs
+ *          1 is unused
+ *          2 creates sound
  */
-void init_timer(int hz);
+void init_timer(uint32_t hz, uint8_t init_channel);
 
 /***
  *

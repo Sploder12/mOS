@@ -1,5 +1,6 @@
 #include "device/ps2.h"
 #include "device/serial.h"
+#include "device/sound.h"
 #include "hard/idt.h"
 #include "pit/pit.h"
 #include "test.h"
@@ -21,6 +22,8 @@ int os_main() {
     const char *string = "Hello, World!";
     println(string, colour);
 
+    playWelcomeTune();
+
     static const char test_str[] = "test";
     size_t test_idx = 0;
 
@@ -33,7 +36,8 @@ int os_main() {
 
             if (test_idx >= sizeof(test_str))
                 enterTesting();
-        } else {
+        }
+        else {
             test_idx = 0;
         }
     }

@@ -48,7 +48,7 @@ OBJ_NAMES := src/os/main.o src/os/test.o os_entry.o src/lib/video/VGA_text.o \
 	src/lib/device/serial.o src/lib/device/ps2.o src/lib/device/keyboard.o \
 	src/lib/container/ring_buffer.o \
 	src/lib/stdlib/stdio.o src/lib/stdlib/stdlib.o src/lib/stdlib/string.o \
-  src/lib/pit/pit.o
+	src/lib/pit/pit.o src/lib/device/sound.o
 
 
 .PHONY: clean qemu test
@@ -71,7 +71,7 @@ os_entry.o: $(ASM_OS_ENTRY_SOURCE)
 	nasm $^ -f elf32 -o $@ $(DEBUG_NASM_FLAGS)
 
 qemu: $(OS_BIN)
-	qemu-system-i386 $(DEBUG_QEMU_FLAGS) -boot c -drive format=raw,file=$^ -no-reboot -no-shutdown
+	qemu-system-i386 $(DEBUG_QEMU_FLAGS) -audiodev pa,id=snd0 -machine pcspk-audiodev=snd0 -boot c -drive format=raw,file=$^ -no-reboot -no-shutdown
 
 qemu-gdb: $(OS_BIN)
 	qemu-system-i386 $(DEBUG_QEMU_FLAGS) -s -S -boot c -drive format=raw,file=$^ \
