@@ -71,7 +71,7 @@ os_entry.o: $(ASM_OS_ENTRY_SOURCE)
 	nasm $^ -f elf32 -o $@ $(DEBUG_NASM_FLAGS)
 
 qemu: $(OS_BIN)
-	qemu-system-i386 $(DEBUG_QEMU_FLAGS) -audiodev pa,id=snd0 -machine pcspk-audiodev=snd0 -boot c -drive format=raw,file=$^ -no-reboot -no-shutdown
+	qemu-system-i386 $(DEBUG_QEMU_FLAGS) -serial tcp:localhost:1111,server -audiodev pa,id=snd0 -machine pcspk-audiodev=snd0 -boot c -drive format=raw,file=$^ -no-reboot -no-shutdown
 
 qemu-gdb: $(OS_BIN)
 	qemu-system-i386 $(DEBUG_QEMU_FLAGS) -s -S -boot c -drive format=raw,file=$^ \
