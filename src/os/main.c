@@ -1,6 +1,6 @@
+#include "device/pc_speaker.h"
 #include "device/ps2.h"
 #include "device/serial.h"
-#include "device/sound.h"
 #include "hard/idt.h"
 #include "pit/pit.h"
 #include "test.h"
@@ -22,7 +22,7 @@ int os_main() {
     const char *string = "Hello, World!";
     println(string, colour);
 
-    // playWelcomeTune();
+    playWelcomeTune();
 
     static const char test_str[] = "test";
     size_t test_idx = 0;

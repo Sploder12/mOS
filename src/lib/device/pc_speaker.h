@@ -3,6 +3,17 @@
 
 #include <stdint.h>
 
+// Continuously plays a tone
+void playFrequency(uint32_t frequency);
+
+// Puts the speaker in the "out" state
+void soundOn(void);
+
+// Puts the speaker in the "in" state
+void soundOff(void);
+
+void playWelcomeTune(void);
+
 // see https://en.wikipedia.org/wiki/Piano_key_frequencies
 typedef enum {
     note_C0 = 16,
@@ -111,11 +122,5 @@ typedef enum {
 
     note_C8 = 4186,
 } KeyNote;
-
-void playFrequency(uint32_t frequency);
-
-void soundOff(void);
-
-void playWelcomeTune(void);
 
 #endif
