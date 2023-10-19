@@ -2,32 +2,6 @@
 OS_OFFSET equ 0x1000
 
 [bits 16]
-.bpb: ;dummy BIOS Parameter Block (real hardware needs this to recognize this as bootable) 
-    jmp short begin
-    nop ;needed for padding
-    .oem_id: db "MakeOS  " ;very important that this is 8 bytes
-    .sector_size: dw 512
-    .sect_per_cluster: db 0
-    .reserved_sectors: dw 0
-    .FATs: db 0
-    .roots: dw 0
-    .vol_sectors: dw 0
-    .mdt: db 0
-    .sect_per_FAT: dw 0
-    .sect_per_track: dw 32
-    .heads: dw 2
-    .hidden: dd 0
-    .large_count: dd 0
-
-    ; begin EBPB
-    .drive_num: db 0
-    .reserved: db 0
-    .signature: db 0
-    .volume_id: dd 0
-    .volume_label: db "MakeOpSys  "
-
-
-[bits 16]
 begin:
     cli
     mov [BOOT_DRIVE], dl
@@ -52,6 +26,8 @@ load_kernel:
     mov al, 'o'
     int 0x10
 
+    mov dl, [BOOT_DRIVE]
+
     mov ah, 2 ;read BIOS chs
     mov al, 20 ;sectors to read
     mov cl, 0x02 ;start at sector 2
@@ -59,6 +35,7 @@ load_kernel:
     mov dh, 0x00 ;head
     mov bx, OS_OFFSET
     int 0x13 ;do read
+    cli
 
     jc err
 
